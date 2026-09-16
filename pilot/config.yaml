@@ -7,4 +7,11 @@ defaults:
 
 sources:
   - name: test-issues
-    github: "repo:selcodiyebiri/oc-pilot-test state:open"
+    tool:
+      command: ["gh", "search", "issues", "--state=open", "--repo=selcodiyebiri/oc-pilot-test", "--json", "number,title,url,repository,state,body,updatedAt"]
+    item:
+      id: "{url}"
+    repo: "{repository.nameWithOwner}"
+    worktree_name: "issue-{number}"
+    session:
+      name: "{title}"
