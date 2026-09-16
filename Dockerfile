@@ -26,4 +26,5 @@ COPY auth-shim/oc-auth-shim.cjs /usr/local/lib/oc-auth-shim.cjs
 ENV NODE_OPTIONS="--require /usr/local/lib/oc-auth-shim.cjs"
 RUN ln -sfn /root/.local/share/opencode/xdg/opencode/opencode.json /root/.config/opencode/opencode.json \
  && ln -sfn /root/.local/share/opencode/xdg/opencode/opencode.jsonc /root/.config/opencode/opencode.jsonc \
- && ln -sfn /root/.local/share/opencode/pilot-data /root/.local/share/opencode-pilot
+ && ln -sfn /root/.local/share/opencode/pilot-data /root/.local/share/opencode-pilot \
+ && ln -sfn /root/.local/share/opencode/pilot-data/poll-state.json /root/.config/opencode/pilot/poll-state.json
