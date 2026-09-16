@@ -13,3 +13,10 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 RUN node --version && npm --version && git --version && gh --version | head -1
+
+RUN timeout 90 npx -y @modelcontextprotocol/server-filesystem /root >/dev/null 2>&1 || true; \
+    timeout 90 npx -y @cyanheads/git-mcp-server >/dev/null 2>&1 || true; \
+    timeout 90 npx -y @kazuph/mcp-fetch >/dev/null 2>&1 || true; \
+    timeout 90 npx -y @modelcontextprotocol/server-sequential-thinking >/dev/null 2>&1 || true; \
+    timeout 90 npx -y @upstash/context7-mcp >/dev/null 2>&1 || true; \
+    echo "npx cache warmed"
