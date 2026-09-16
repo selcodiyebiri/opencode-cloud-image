@@ -3,7 +3,7 @@ repos_dir: /root/.local/share/opencode/repos
 defaults:
   agent: build
   prompt: default
-  model: opencode/claude-sonnet-4-6
+  model: opencode-go/deepseek-v4.1-flash
 
 sources:
   - name: test-issues
