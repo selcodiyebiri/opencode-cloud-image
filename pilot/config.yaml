@@ -1,0 +1,10 @@
+repos_dir: /root/.local/share/opencode/repos
+
+defaults:
+  agent: build
+  prompt: default
+  model: opencode/claude-sonnet-4-6
+
+sources:
+  - name: test-issues
+    github: "repo:selcodiyebiri/oc-pilot-test state:open"

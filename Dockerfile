@@ -20,3 +20,6 @@ RUN timeout 90 npx -y @modelcontextprotocol/server-filesystem /root >/dev/null 2
     timeout 90 npx -y @modelcontextprotocol/server-sequential-thinking >/dev/null 2>&1 || true; \
     timeout 90 npx -y @upstash/context7-mcp >/dev/null 2>&1 || true; \
     echo "npx cache warmed"
+
+COPY pilot/ /root/.config/opencode/pilot/
+RUN ln -sfn /root/.local/share/opencode/pilot-data /root/.local/share/opencode-pilot
