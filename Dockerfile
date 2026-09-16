@@ -21,10 +21,12 @@ RUN timeout 90 npx -y @modelcontextprotocol/server-filesystem /root >/dev/null 2
     timeout 90 npx -y @upstash/context7-mcp >/dev/null 2>&1 || true; \
     echo "npx cache warmed"
 
-COPY pilot/ /root/.config/opencode/pilot/
 COPY auth-shim/oc-auth-shim.cjs /usr/local/lib/oc-auth-shim.cjs
 ENV NODE_OPTIONS="--require /usr/local/lib/oc-auth-shim.cjs"
-RUN ln -sfn /root/.local/share/opencode/xdg/opencode/opencode.json /root/.config/opencode/opencode.json \
+RUN mkdir -p /root/.config/opencode/pilot \
+ && ln -sfn /root/.local/share/opencode/xdg/opencode/pilot/config.yaml /root/.config/opencode/pilot/config.yaml \
+ && ln -sfn /root/.local/share/opencode/xdg/opencode/pilot/templates /root/.config/opencode/pilot/templates \
+ && ln -sfn /root/.local/share/opencode/xdg/opencode/opencode.json /root/.config/opencode/opencode.json \
  && ln -sfn /root/.local/share/opencode/xdg/opencode/opencode.jsonc /root/.config/opencode/opencode.jsonc \
  && ln -sfn /root/.local/share/opencode/pilot-data /root/.local/share/opencode-pilot \
  && ln -sfn /root/.local/share/opencode/pilot-data/poll-state.json /root/.config/opencode/pilot/poll-state.json
