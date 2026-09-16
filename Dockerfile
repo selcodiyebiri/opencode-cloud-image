@@ -1,5 +1,7 @@
 FROM smanx/opencode:latest
 
+LABEL oc.release="3"
+
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git ca-certificates curl gnupg lsof procps \
  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
