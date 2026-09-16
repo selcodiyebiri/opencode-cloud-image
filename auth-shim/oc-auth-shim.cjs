@@ -17,6 +17,21 @@ const password = process.env.OPENCODE_SERVER_PASSWORD;
 const targetPort = process.env.OC_AUTH_SHIM_PORT || "4096";
 const localHosts = new Set(["127.0.0.1", "localhost", "::1"]);
 
+// Bootstrap: ensure runtime dirs exist inside the persistent data volume.
+// (The image can't pre-create them because the volume masks that path at
+// runtime; pilot writes through symlinks into these directories.)
+try {
+  const fs = require("fs");
+  for (const dir of [
+    "/root/.local/share/opencode/pilot-data",
+    "/root/.local/share/opencode/repos",
+  ]) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+} catch {
+  // best effort; never block process startup
+}
+
 if (username && password && typeof globalThis.fetch === "function") {
   const originalFetch = globalThis.fetch;
   const authHeader =
