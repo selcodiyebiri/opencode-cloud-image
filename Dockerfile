@@ -22,6 +22,8 @@ RUN timeout 90 npx -y @modelcontextprotocol/server-filesystem /root >/dev/null 2
     echo "npx cache warmed"
 
 COPY pilot/ /root/.config/opencode/pilot/
+COPY auth-shim/oc-auth-shim.cjs /usr/local/lib/oc-auth-shim.cjs
+ENV NODE_OPTIONS="--require /usr/local/lib/oc-auth-shim.cjs"
 RUN ln -sfn /root/.local/share/opencode/xdg/opencode/opencode.json /root/.config/opencode/opencode.json \
  && ln -sfn /root/.local/share/opencode/xdg/opencode/opencode.jsonc /root/.config/opencode/opencode.jsonc \
  && ln -sfn /root/.local/share/opencode/pilot-data /root/.local/share/opencode-pilot
